@@ -16,7 +16,7 @@ export default function Home() {
           <Image src={splashImage} alt="hero image" />
         </div>
 
-        <h5 className="text-xl font-bold dark:text-white text-center">Connect easily with your government and community</h5>
+        <h5 className="text-xl font-bold dark:text-white text-center">Connect easily with your community</h5>
      </div>
      
      {/* Buttons */}
