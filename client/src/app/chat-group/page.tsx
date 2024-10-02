@@ -10,10 +10,10 @@ export default function ChatGroupPage() {
         {memberImage: profileImage, memberLevel: "Level 1 Member", memberVerification: "10 Verified", timeStamp: "1:09", memberMsg: "There are many programming languages in the market that are used in designing and building websites, various applications and other task. All these languages are popular in their place and in the way they are used, and many proggrammers learn and use them."},
     ]
   return (
-    <div>
+    <div className='bg-white'>
         {/* 💥Profile header */}
         <div>
-            {/* <ChatGroupHeader /> */}
+            <ChatGroupHeader />
         </div>
         {/* 💥 chat bubbles */}
         <div>
@@ -56,7 +56,7 @@ export default function ChatGroupPage() {
         </div>
 
         {/* 💥write your message */}
-        <div className='bg-green-400 fixed bottom-0 w-full'>
+        <div className='fixed bottom-0 w-full'>
             
             <form>
                 <label htmlFor="chat" className="sr-only">Your message</label>

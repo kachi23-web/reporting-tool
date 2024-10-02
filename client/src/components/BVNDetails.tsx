@@ -1,11 +1,11 @@
 import React from 'react'
 import Modal from './Modal'
 
-export default function NINDetails() {
+export default function BVNDetails() {
   return (
-   <div  className="min-h-screen flex items-center">
+    <div  className="min-h-screen flex items-center">
         <div className="container px-4 mx-auto relative">
-            <Modal modalTitle='NIN' />
+            <Modal modalTitle='BVN' />
             <form className="max-w-sm mx-auto">
                     <div className="mb-5">
                         <label htmlFor="full-name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fullname</label>
