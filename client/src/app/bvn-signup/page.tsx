@@ -1,23 +1,23 @@
 'use client'
-import NINDetails from '@/components/NINDetails'
+import BVNDetails from '@/components/BVNDetails'
 import React, { useState } from 'react'
 
 
-export default function NINSignupPage() {
+export default function BVNSignupPage() {
     const [toggle, setToggle] = useState(false)
     function handleClick() {
         setToggle(true)
-    }   
+    } 
   return (
     <>
     {
-    toggle ? <NINDetails />
+    toggle ? <BVNDetails />
     :
     <div className="min-h-screen flex items-center">
         <div className='container px-4 mx-auto'>
             <form className="max-w-sm mx-auto">
                 <div className="mb-5">
-                    <label htmlFor="nin-number" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Your NIN number</label>
+                    <label htmlFor="nin-number" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Your BVN number</label>
                     <input type="number" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                 </div>
             
@@ -32,10 +32,7 @@ export default function NINSignupPage() {
         </div>
     </div> 
 
-
     }
-
-    
     </>
   )
 }
