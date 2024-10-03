@@ -59,7 +59,7 @@ export default function LoginPage() {
                 {/* Sign up prompt */}
                 <div className='text-center'>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Don't have an account? <Link href="" className="text-blue-600 hover:underline">Sign up</Link>
+                        Don't have an account? <Link href="signup" className="text-blue-600 hover:underline">Sign up</Link>
                     </p>
                 </div>
             </div>
