@@ -84,8 +84,6 @@ export default function ChatGroupPage() {
                     </button>
                 </div>
             </form>
-
-
         </div>
 
     </div>

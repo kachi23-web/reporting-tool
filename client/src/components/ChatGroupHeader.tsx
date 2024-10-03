@@ -8,7 +8,7 @@ import { FaBell, FaEllipsisV, FaChevronLeft } from 'react-icons/fa'
 export default function ChatGroupHeader() {
   return (
     <div>
-       <div className='flex items-center justify-around bg-white py-3 '>
+       <div className='flex items-center justify-around bg-white py-2 '>
         <div className='flex items-center gap-3'>
           <FaChevronLeft />
           <Image src={profileImage} alt='' className='rounded-full h-14 w-14' />
