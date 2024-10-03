@@ -1,38 +1,158 @@
-'use client'
-import BVNDetails from '@/components/BVNDetails'
-import React, { useState } from 'react'
+"use client"; 
+import { useState, ChangeEvent, FormEvent } from 'react';
 
-
-export default function EmailSignupPage() {
-    const [toggle, setToggle] = useState(false)
-    function handleClick() {
-        setToggle(true)
-    } 
-  return (
-    <>
-    {
-    toggle ? <BVNDetails />
-    :
-    <div className="min-h-screen flex items-center">
-        <div className='container px-4 mx-auto'>
-            <form className="max-w-sm mx-auto">
-                <div className="mb-5">
-                    <label htmlFor="nin-number" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Your BVN number</label>
-                    <input type="number" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                </div>
-            
-            {/* Buttons */}
-                <div className='space-y-3'>
-                        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleClick}>Submit</button>
-
-                        <button type="submit" className="text-black bg-transparent hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Back</button>
-                </div>
-            </form>
-
-        </div>
-    </div> 
-
-    }
-    </>
-  )
+// Define types for form data and error message
+interface SignupFormData {
+  email: string;
+  password: string;
+  confirmPassword: string;
 }
+
+const Signup = () => {
+  // Set up state for form data and message
+  const [formData, setFormData] = useState<SignupFormData>({
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const [message, setMessage] = useState<string>('');
+
+  // Handle input change
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Basic client-side validation
+    if (formData.password !== formData.confirmPassword) {
+      setMessage('Passwords do not match');
+      return;
+    }
+
+    // Reset message
+    setMessage('');
+
+    // Simulate a POST request to your signup API (replace with real API)
+    try {
+      const response = await fetch('/api/email-signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: formData.email, password: formData.password }),
+      });
+
+      if (response.ok) {
+        setMessage('Signup successful!');
+      } else {
+        setMessage('Signup failed.');
+      }
+    } catch (error) {
+      setMessage('An error occurred during signup.');
+    }
+  };
+
+  return (
+    <div className="signup-container">
+      <h1>Sign Up</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor="confirmPassword">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+
+      {/* Display message */}
+      {message && <p>{message}</p>}
+
+      <style jsx>{`
+        .signup-container {
+          max-width: 400px;
+          margin: 50px auto;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        form div {
+          margin-bottom: 15px;
+        }
+
+        label {
+          display: block;
+          margin-bottom: 5px;
+        }
+
+        input {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+
+        button {
+          width: 100%;
+          padding: 10px;
+          background-color: #0070f3;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+
+        button:hover {
+          background-color: #005bb5;
+        }
+
+        p {
+          margin-top: 15px;
+          font-size: 14px;
+          color: red;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default Signup;
