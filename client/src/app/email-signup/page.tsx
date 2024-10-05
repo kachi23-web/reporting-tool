@@ -1,5 +1,8 @@
 "use client"; 
 import { useState, ChangeEvent, FormEvent } from 'react';
+import axios, { AxiosError } from 'axios';
+
+
 
 // Define types for form data and error message
 interface SignupFormData {
@@ -17,6 +20,9 @@ const Signup = () => {
   });
 
   const [message, setMessage] = useState<string>('');
+  // const [message, setMessage] = useState(''); // Holds success or error message
+  const [isError, setError] = useState(false); // Holds whether it's an error
+
 
   // Handle input change
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -39,25 +45,22 @@ const Signup = () => {
     // Reset message
     setMessage('');
 
-    // Simulate a POST request to your signup API (replace with real API)
+  
     try {
-      const response = await fetch('/api/email-signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: formData.email, password: formData.password }),
-      });
-
-      if (response.ok) {
-        setMessage('Signup successful!');
-      } else {
-        setMessage('Signup failed.');
-      }
+      const response = await axios.post('http://localhost:3000/api/user', formData);
+      setMessage('User registered successfully');
     } catch (error) {
-      setMessage('An error occurred during signup.');
+      if (axios.isAxiosError(error)) {
+        const errorMsg = error.response ? error.response.data : error.message;
+        setMessage(`Error registering user: ${errorMsg}`); // Error message
+        setError(true); // Indicating it's an error
+      } else {
+        setMessage('An unexpected error occurred.'); // Handle non-Axios errors
+        setError(true);
+      }
     }
   };
+
 
   return (
     <div className="signup-container">
