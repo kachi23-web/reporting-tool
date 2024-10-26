@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import Image from 'next/image';
-import chevronDown from '@/assets/chevron-down.png';
+import chevronDownStroke from '@/assets/chevron-down-stroke.png';
 
 // Define a list of communities
-const communities = ['Abuja Community', 'Anambra Community', 'Lagos Community', 'Enugu Community'];
-
-export default function DropDown() {
-  // State to manage the dropdown's open/close status
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+const communities = ['Select Option', 'Option One', 'Option Two', 'Option Three'];
+export default function SuggestedContractors() {
+   // State to manage the dropdown's open/close status
+   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   // State to keep track of the selected community; defaults to "Abuja Community"
-  const [selectedCommunity, setSelectedCommunity] = useState<string>('Abuja Community');
+  const [selectedCommunity, setSelectedCommunity] = useState<string>('Selected Option');
 
   // Toggles the dropdown open or closed
   const toggleDropdown = (): void => {
@@ -24,11 +23,11 @@ export default function DropDown() {
   };
 
   return (
-    <div className="relative inline-block text-sm">
+    <div className="relative inline-block p-2 rounded-md border bg-white">
       {/* Dropdown header, displays the selected community */}
       <div className="flex items-center gap-8 cursor-pointer" onClick={toggleDropdown}>
         <p>{selectedCommunity}</p>
-        <Image src={chevronDown} alt="Dropdown icon" />
+        <Image src={chevronDownStroke} alt="Dropdown icon" />
       </div>
       
       {/* Dropdown menu, shown only when `isOpen` is true */}
@@ -49,5 +48,5 @@ export default function DropDown() {
         </div>
       )}
     </div>
-  );
+  )
 }

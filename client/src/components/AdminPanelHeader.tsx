@@ -17,12 +17,12 @@ export default function AdminPanelHeader() {
     //     donatIconShow = !donatIconShow;
     // }
   return (
-    <div>
+    <div className='bg-white shadow-md'>
         {/* Topbar */}
-        <div className='flex justify-between items-center'>
-            <div className='flex'>
+        <div className='flex justify-between items-center pt-1 pl-1'>
+            <div className='flex gap-2 items-center p-1 rounded-lg bg-[#F4F4F4]'>
                 <div>
-                <Image src={communityIcon} alt='' height={45}/>
+                <Image src={communityIcon} alt='' height={30}/>
                 </div>
                 <DropDown />
             </div>

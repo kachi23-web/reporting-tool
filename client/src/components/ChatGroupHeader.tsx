@@ -1,27 +1,28 @@
-import React from 'react'
+// ChatGroupHeader.tsx
+'use client'
+import React, { useState } from 'react'
 import Image from 'next/image'
-import profileImage from "@/assets/google-logo.png"
-import NotificationBtn from './NotificationBtn'
-import OptionsMenu from './OptionsMenu'
-import { FaBell, FaEllipsisV, FaChevronLeft } from 'react-icons/fa'
+import communityIcon from '@/assets/Ellipse 7.png'
+import donateIcon from '@/assets/Donate.png'
+import notificationIcon from '@/assets/notification.png'
+import { FaChevronLeft, FaEllipsisVertical } from 'react-icons/fa6'
 
 export default function ChatGroupHeader() {
+  const [showDonateIcon, setShowDonateIcon] = useState(true);
+
   return (
-    <div>
-       <div className='flex items-center justify-around bg-white py-2 '>
+    <div className='bg-white shadow-md fixed top-0 left-0 w-full z-10'>
+      <div className='flex items-center justify-around py-2'>
         <div className='flex items-center gap-3'>
           <FaChevronLeft />
-          <Image src={profileImage} alt='' className='rounded-full h-14 w-14' />
-        </div>
-          <p className='text-lg font-semibold dark:text-white'>Abuja Elelction Monitoring</p>
-          <div className='flex gap-2'>
-           <FaBell size={20}/>
-            <FaEllipsisV size={20}/>
+          <div>
+            <Image src={communityIcon} alt='' height={45} />
           </div>
-          {/* <NotificationBtn /> */}
-          {/* <OptionsMenu /> */}
-       </div>
-
+        </div>
+        <p className='font-semibold dark:text-white'>Abuja Election Monitoring</p>
+        <Image src={notificationIcon} alt="" />
+        <FaEllipsisVertical />
+      </div>
     </div>
   )
 }
