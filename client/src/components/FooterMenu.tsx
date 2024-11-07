@@ -1,24 +1,27 @@
 import Link from 'next/link'
 import React from 'react'
-import { FaHome, FaSync, FaComments, FaPhone  } from 'react-icons/fa'
+import Image from 'next/image'
+import homeIcon from '@/assets/home-icon.png'
+import groupsIcon from '@/assets/groups-icon.png'
+import chatsIcon from '@/assets/chats-icon.png'
+import callsIcon from '@/assets/calls-icon.png'
 
 export default function FooterMenu() {
     let menuItems = [
-        {menuIcon: <FaHome size={25}/>, menuTitle: "Home", menuLink: ""},
-        {menuIcon: <FaSync size={25}/>, menuTitle: "Groups", menuLink: ""},
-        {menuIcon: <FaComments size={25}/>, menuTitle: "Chatss", menuLink: ""},
-        {menuIcon: <FaPhone size={25}/>, menuTitle: "Calls", menuLink: ""},
-    ]
+        {menuIcon: homeIcon, menuLink: ""},
+        {menuIcon: groupsIcon,  menuLink: ""},
+        {menuIcon: chatsIcon,  menuLink: ""},
+        {menuIcon:  callsIcon,  menuLink: ""},
+    ];
   return (
-    <div className='flex justify-between bg-white py-2 px-4 fixed bottom-0 w-full'>
+    <div className='flex justify-between items-center border shadow-md px-4 fixed bottom-0 h-16 w-full bg-white'>
         {
             menuItems.map((item, i)=> (
                 <Link key={i} href={item.menuLink}>
                     <div className='flex flex-col justify-center items-center'>
                         <div>
-                            {item.menuIcon}
+                            <Image src={item.menuIcon} alt="Nav icons footer" />
                         </div>
-                        <p className='text-sm'>{item.menuTitle}</p>
                     </div>
                 </Link>
             ))
